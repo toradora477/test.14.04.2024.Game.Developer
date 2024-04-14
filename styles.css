@@ -1,21 +1,35 @@
-canvas {
-  border: 5px solid black;
-  background-color: #add8e6; /* Цвет воды */
-  margin: 5px; /* Расстояние от барабанов до границы канваса */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('./images/background.jpg'); /* Замени 'background.jpg' на путь к своему изображению */
+  background-size: cover;
 }
 
-#slotCanvas {
+.slot-machine {
+  position: relative;
+}
+
+canvas {
+  border: 5px solid black;
+  background-color: #add8e6;
+  margin: 5px;
   display: block;
-  margin: 0 auto; /* Центрируем канвас по горизонтали */
+  margin: 0 auto;
 }
 
 button {
   display: block;
-  margin: 20px auto; /* Центрируем кнопку по горизонтали */
+  margin: 20px auto;
 }
 
-.slot-image {
-  width: 500px; /* Ширина изображений */
-  height: 500px; /* Высота изображений */
-  margin-bottom: 10px; /* Расстояние между изображениями */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
