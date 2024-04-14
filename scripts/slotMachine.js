@@ -8,7 +8,7 @@ class SlotMachine {
     this.spinButton = document.getElementById('spinButton');
     this.spinButton.addEventListener('click', () => this.spin());
     // Инициализируем массив барабанов и флаг состояния вращения
-    this.reels = [[], [], []];
+    this.reels = [[], [], [], [], []];
     this.isSpinning = false;
     // Загружаем изображения символов
     this.symbolImages = symbolImages;
@@ -44,16 +44,20 @@ class SlotMachine {
     }, 100); // Интервал анимации
   }
 
-  // Метод для отрисовки барабанов на канвасе
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    for (let i = 0; i < this.reels.length; i++) {
+    const numReels = 5; // Количество барабанов
+    const symbolWidth = this.canvas.width / numReels; // Ширина символа на барабане
+    const symbolHeight = this.canvas.height / 3; // Высота символа на барабане
+    const spacing = 10; // Отступ между барабанами
+
+    for (let i = 0; i < numReels; i++) {
       const reel = this.reels[i];
       for (let j = 0; j < reel.length; j++) {
         const symbol = reel[j];
         const img = this.symbolImages[symbol];
-        // Пример: отрисовываем изображения символов в определенном месте на канвасе
-        this.ctx.drawImage(img, 50 + i * 100, 50 + j * 50, 50, 50);
+        // Отрисовываем символы с учетом отступа между барабанами
+        this.ctx.drawImage(img, i * symbolWidth + spacing * i, j * symbolHeight, symbolWidth, symbolHeight);
       }
     }
   }
