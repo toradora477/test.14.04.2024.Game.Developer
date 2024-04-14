@@ -16,6 +16,8 @@ class SlotMachine {
     this.adjustCanvasSize();
 
     this.adjustButtonPosition();
+
+    this.populateReels();
   }
 
   // Метод для запуска вращения барабанов
@@ -26,7 +28,6 @@ class SlotMachine {
     }
   }
 
-  // Метод для анимации вращения барабанов
   animate() {
     const spinDuration = 3000; // Продолжительность вращения в миллисекундах
     const startTime = Date.now();
@@ -35,13 +36,28 @@ class SlotMachine {
       if (elapsedTime >= spinDuration) {
         clearInterval(spinInterval);
         this.isSpinning = false;
-        this.populateReels();
+        // this.populateReels(); // Заполняем барабаны случайными символами
         this.draw();
       } else {
-        this.shuffleReels();
+        // Анимация перемещения символов вверх
+        this.moveSymbolsUp();
         this.draw();
       }
-    }, 100); // Интервал анимации
+    }, 200); // Интервал анимации
+  }
+
+  moveSymbolsUp() {
+    // Перемещаем символы вверх
+    for (let i = 0; i < this.reels.length; i++) {
+      // Сохраняем нижний символ
+      // const bottomSymbol = this.reels[i][2];
+      // Сдвигаем все символы на одну позицию вверх
+      for (let j = 2; j > 0; j--) {
+        this.reels[i][j] = this.reels[i][j - 1];
+      }
+      // Генерируем случайный символ для нижней позиции
+      this.reels[i][0] = this.generateRandomSymbol();
+    }
   }
 
   draw() {
@@ -49,7 +65,7 @@ class SlotMachine {
     const numReels = 5; // Количество барабанов
     const symbolWidth = this.canvas.width / numReels; // Ширина символа на барабане
     const symbolHeight = this.canvas.height / 3; // Высота символа на барабане
-    const spacing = 10; // Отступ между барабанами
+    const spacing = 1; // Отступ между барабанами
 
     for (let i = 0; i < numReels; i++) {
       const reel = this.reels[i];
