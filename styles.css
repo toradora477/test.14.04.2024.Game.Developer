@@ -4,8 +4,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('./images/background.jpg'); /* Замени 'background.jpg' на путь к своему изображению */
-  background-size: cover;
+  background-color: black;
+  background-image: url('./images/background.jpg');
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .slot-machine {
