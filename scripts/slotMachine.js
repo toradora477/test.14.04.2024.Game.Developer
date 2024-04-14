@@ -18,11 +18,21 @@ class SlotMachine {
 
   // Метод для подстройки размеров канваса под размеры окна
   adjustCanvasSize() {
-    const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    // Пример: устанавливаем размеры канваса в 80% от размеров окна
+    const heightMultiplier = windowHeight > 1000 ? 0.48 : 0.49; //* +
+    const marginTopPercentage =
+      {
+        [900 >= windowHeight && windowHeight < 1000]: 120,
+        [800 >= windowHeight && windowHeight < 900]: 110,
+        [700 >= windowHeight && windowHeight < 800]: 100,
+        [windowHeight < 600]: 95,
+      }[true] || 130; //* +
+    this.canvas.height = windowHeight * heightMultiplier;
+    this.canvas.style.marginTop = `${marginTopPercentage}px`;
+
+    const windowWidth = window.innerWidth;
+
     this.canvas.width = windowWidth * 0.4;
-    this.canvas.height = windowHeight * 0.4;
   }
 
   // Метод для запуска вращения барабанов
