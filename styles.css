@@ -4,7 +4,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: black;
+  background-color: #140001;
   background-image: url('./images/background.jpg');
   background-size: auto 100%;
   background-position: center;
@@ -21,13 +21,11 @@ canvas {
 
   display: block;
   margin: 0 auto;
-  /* margin-top: 130px; */
-  /* width: 200px; */
 }
 
 button {
-  display: block;
-  margin: 20px auto;
+  /* display: block; */
+  /* margin: 20px auto; */
 }
 
 .background {
