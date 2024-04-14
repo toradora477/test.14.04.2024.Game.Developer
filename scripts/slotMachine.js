@@ -19,20 +19,19 @@ class SlotMachine {
   // Метод для подстройки размеров канваса под размеры окна
   adjustCanvasSize() {
     const windowHeight = window.innerHeight;
-    const heightMultiplier = windowHeight > 1000 ? 0.48 : 0.49; //* +
-    const marginTopPercentage =
+    const heightMultiplier = windowHeight > 1000 ? 0.48 : 0.49; //* + perfect
+    const marginTopMultiplier =
       {
         [900 >= windowHeight && windowHeight < 1000]: 120,
         [800 >= windowHeight && windowHeight < 900]: 110,
         [700 >= windowHeight && windowHeight < 800]: 100,
         [windowHeight < 600]: 95,
-      }[true] || 130; //* +
+      }[true] || 130; //* + perfect
     this.canvas.height = windowHeight * heightMultiplier;
-    this.canvas.style.marginTop = `${marginTopPercentage}px`;
+    this.canvas.style.marginTop = `${marginTopMultiplier}px`;
 
-    const windowWidth = window.innerWidth;
-
-    this.canvas.width = windowWidth * 0.4;
+    const windowMultiplier = 0.84; //* + perfect
+    this.canvas.width = windowHeight * windowMultiplier;
   }
 
   // Метод для запуска вращения барабанов
