@@ -13,6 +13,8 @@ const checkImagesLoaded = () => {
   if (imagesLoaded === totalImages) {
     console.log('All images loaded');
     const slotMachine = new SlotMachine('slotCanvas');
+    slotMachine.populateReels();
+    slotMachine.draw();
   }
 };
 
@@ -39,7 +41,6 @@ class SlotMachine {
   spin() {
     if (!this.isSpinning) {
       this.isSpinning = true;
-      this.populateReels();
       this.animate();
     }
   }
@@ -52,8 +53,12 @@ class SlotMachine {
       if (elapsedTime >= spinDuration) {
         clearInterval(spinInterval);
         this.isSpinning = false;
+        this.populateReels();
+        this.draw();
+      } else {
+        this.shuffleReels();
+        this.draw();
       }
-      this.draw();
     }, 100);
   }
 
@@ -80,4 +85,18 @@ class SlotMachine {
       }
     }
   }
+
+  shuffleReels() {
+    for (let i = 0; i < this.reels.length; i++) {
+      for (let j = 0; j < 3; j++) {
+        this.reels[i][j] = this.generateRandomSymbol();
+      }
+    }
+  }
 }
+
+window.onload = () => {
+  const slotMachine = new SlotMachine('slotCanvas');
+  slotMachine.populateReels();
+  slotMachine.draw();
+};
